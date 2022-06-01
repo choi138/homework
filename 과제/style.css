@@ -1,0 +1,47 @@
+body {
+    background-color: #0A174E;
+}
+
+input, ::placeholder{
+    color: black;
+    font-size: 2.5rem;
+    border-radius: 1.3rem;
+}
+
+button{
+    background-color: #F5D042;
+    color: black;
+    font-size: 2.5rem;
+    border-radius: 1.3rem;
+    position: relative;
+    top: 16rem;
+}
+
+input {
+    background-color: #F5D042;
+    font-size: 2.5rem;
+    border-radius: 1.3rem;
+    text-align: center;
+}
+
+form{
+    text-align: center;
+    position: relative;
+    top: 13rem;
+    /* border: 1px solid white; */
+}
+
+span{
+    font-size: 2rem;
+    color: #F5D042;
+    position: relative;
+    top: 16rem;
+}
+
+li{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
