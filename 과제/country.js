@@ -6,10 +6,10 @@ let countrys = [];
 const COUNTRY = "country";
 
 function saveCountry(){
-    localStorage.setItem("COUNTRY", JSON.stringify(countrys));// JSON.stringify를 써서 countrys를 숫자열로 바꾼다.
+    localStorage.setItem("COUNTRY", JSON.stringify(countrys));// JSON.stringify를 써서 countrys를 문자열로 바꾼다.
 }
 
-function CountrySubmit(event){
+function countrySubmit(event){
     event.preventDefault()
     const newCountry = countryInput.value;
     countryInput.value = "";
@@ -22,7 +22,7 @@ function CountrySubmit(event){
     saveCountry();
 }
 
-country.addEventListener("submit", CountrySubmit);
+country.addEventListener("submit", countrySubmit);
 
 function paintCountry(newTodo){ // paintCountry라는 함수를 만들고 함수안에 newTodo인수를 넣는다.
     const li = document.createElement("li");
@@ -31,32 +31,46 @@ function paintCountry(newTodo){ // paintCountry라는 함수를 만들고 함수
     span.innerText = newTodo.text; // newTodo.text는 객체의 프로퍼티이다.
     const button = document.createElement("button");
     button.innerText = "❌";
-    button.addEventListener("click", deletCountry);
+    button.addEventListener("click", deleteCountry);
     li.appendChild(span);
     li.appendChild(button);
     countryList.appendChild(li);
-    if(span.innerText === "한국" || span.innerText === "korea" || span.innerText === "Korea")
-        setInterval(()=>{
-            span.innerText = "Korea" + "🇰🇷 " + Korea()
-        }, 1000)
-    else if(span.innerText === "일본" || span.innerText === "japan" || span.innerText === "Japan"){
-        setInterval(()=>{
-            span.innerText = "Japan" + "🇯🇵 " + Japan()
-        }, 1000)
-    }
-    else if(span.innerText === "중국" || span.innerText === "china" || span.innerText === "China"){
-        setInterval(()=>{
-            span.innerText = "China" + "🇨🇳 " + china()
-        }, 1000)
-    }
-    else if(span.innerText === "뉴욕" || span.innerText === "new york" || span.innerText === "New York"){
-        setInterval(()=>{
-            span.innerText = "New York" + "🇺🇸 " + New_York()
-        }, 1000)
+    let text = span.innerText.toLowerCase()
+    switch(text){
+        case "한국":
+        case "korea":
+            setInterval(()=>{
+                span.innerText = "Korea" + "🇰🇷 " + korea()
+            })
+        break;
+
+        case "일본":
+        case "japan":
+            setInterval(()=>{
+                span.innerText = "Japan" + "🇯🇵 " + japan()
+            })
+        break;
+
+        case "중국":
+        case "china":
+            setInterval(()=>{
+                span.innerText = "China" + "🇨🇳 " + china()
+            })
+        break;
+
+        case "뉴욕":
+        case "new york":
+            setInterval(()=>{
+                span.innerText = "New York" + "🇺🇸 " + new_York()
+            })
+        break;
+
+        default:
+            span.innerText = "등록되지 않은 나라입니다."
     }
 }
 
-function deletCountry(event){
+function deleteCountry(event){
     const li = event.target.parentNode;
     countrys = countrys.filter((toDo) => toDo.id !== parseInt(li.id))
     li.remove();
@@ -79,21 +93,21 @@ function china(){
 
 // 중국
 
-function Japan(){
+function japan(){
     return new Date().toLocaleTimeString
     ('en-US', { timeZone: 'Asia/Tokyo' });
 }
 
 // 도쿄
 
-function Korea(){
+function korea(){
     return new Date().toLocaleTimeString
     ('en-US', { timeZone: 'Asia/Seoul' });
 }
 
 // 한국
 
-function New_York() {
+function new_York() {
     return new Date().toLocaleTimeString
     ('en-US', { timeZone: 'America/New_York' });
 }
